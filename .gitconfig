@@ -1,0 +1,10 @@
+[alias]
+	st = status
+	onelog = log --oneline
+	ci = commit
+	ada = add -A
+[user]
+	email = 44783088+iamludal@users.noreply.github.com
+	name = Ludal
+[pull]
+	rebase = false
