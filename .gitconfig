@@ -8,3 +8,5 @@
 	name = Ludal
 [pull]
 	rebase = false
+[core]
+	editor = vim
