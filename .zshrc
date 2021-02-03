@@ -17,6 +17,8 @@ plugins=(
 
 PROMPT_EOL_MARK=''
 
+RPROMPT="[%*]"
+
 source $ZSH/oh-my-zsh.sh
 
 # STATUS CODE ===================================
