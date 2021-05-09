@@ -2,17 +2,18 @@
 
 create_symlinks()
 {
-  hidden_files=$(ls -A -I symlinks.sh -I .git) 
+  dir=$(dirname $0)
+  hidden_files=$(ls $dir -A -I symlinks.sh -I .git -I $dir)
 
   for file in $hidden_files
   do
-    ln -sfn .dotfiles/$file ~/$file
+    ln -sfn $dir/$file ~/$file
     
     if [[ $? -eq 0 ]]
     then
         echo "[i] $file : ok"
     else
-        echo "[!] $file : error"
+        echo "[x] $file : error"
     fi
   done
 }
