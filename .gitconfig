@@ -8,6 +8,6 @@
 	email = 44783088+iamludal@users.noreply.github.com
 	name = Ludal
 [pull]
-	rebase = false
+	rebase = true
 [core]
 	editor = vim
