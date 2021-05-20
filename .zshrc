@@ -11,6 +11,7 @@ plugins=(
     git
     npm
     sudo
+    yarn
     zsh-syntax-highlighting
     zsh-autosuggestions
 )
@@ -48,3 +49,5 @@ alias zshapply="source ~/.zshrc"
 alias py="python3"
 
 export GPG_TTY=$(tty)
+
+PATH=/home/ludal/.yarn/bin:$PATH
