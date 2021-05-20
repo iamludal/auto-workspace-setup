@@ -3,7 +3,7 @@
 create_symlinks()
 {
   dir=$(pwd)/$(dirname $0)
-  hidden_files=$(ls $dir -A -I symlinks.sh -I .git -I $dir)
+  hidden_files=$(ls $dir -A -I symlinks.sh -I .git -I README.md -I $dir)
 
   for file in $hidden_files
   do
