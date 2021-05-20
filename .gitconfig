@@ -5,9 +5,16 @@
 	ada = add -A
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [user]
-	email = 44783088+iamludal@users.noreply.github.com
+	email = ludovic.chombeau@gmail.com
 	name = Ludal
+	signingkey = ludovic.chombeau@gmail.com
 [pull]
 	rebase = true
 [core]
 	editor = vim
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg
+[tag]
+	gpgsign = true
