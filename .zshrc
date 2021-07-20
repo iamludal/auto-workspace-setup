@@ -47,6 +47,7 @@ export UPDATE_ZSH_DAYS=14
 alias zshconfig="vim ~/.zshrc"
 alias zshapply="source ~/.zshrc"
 alias py="python3"
+alias copy="xclip -sel clip"
 
 export GPG_TTY=$(tty)
 
