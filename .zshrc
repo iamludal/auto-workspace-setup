@@ -48,6 +48,7 @@ alias zshconfig="vim ~/.zshrc"
 alias zshapply="source ~/.zshrc"
 alias py="python3"
 alias copy="xclip -sel clip"
+alias gms="gm --squash"
 
 export GPG_TTY=$(tty)
 
