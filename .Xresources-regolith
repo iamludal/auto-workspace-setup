@@ -1,7 +1,16 @@
 #include "/etc/regolith/styles/dracula/root"
 i3-wm.bar.position: top
-gnome.wallpaper:
 i3-wm.binding.ws_next: twosuperior
 i3-wm.binding.move_next_free: Shift+twosuperior
+i3-wm.workspace_layout: tabbed
 i3-wm.workspace.layout: tabbed
+gnome.gtk.theme: Dracula
+gnome.icon.theme: Paper
+gnome.terminal.font: Fira Code 12
+gnome.terminal.scrollbar: always
+gnome.wallpaper:
+gnome.wm.theme:	Dracula
+rofi.icon-theme: Paper
+
+i3-wm.bar.font:	pango:JetBrains Mono Medium 12, Material Design Icons 12
 
