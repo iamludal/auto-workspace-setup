@@ -1,5 +1,7 @@
+#include "/etc/regolith/styles/dracula/root"
 i3-wm.bar.position: top
 gnome.wallpaper:
 i3-wm.binding.ws_next: twosuperior
 i3-wm.binding.move_next_free: Shift+twosuperior
+i3-wm.workspace.layout: tabbed
 
