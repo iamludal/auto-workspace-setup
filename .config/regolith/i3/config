@@ -100,16 +100,6 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-## Navigate // Relative Window // <> k j h l ##
-set_from_resource $i3-wm.binding.left i3-wm.binding.left h
-set_from_resource $i3-wm.binding.right i3-wm.binding.right l
-set_from_resource $i3-wm.binding.up i3-wm.binding.up k
-set_from_resource $i3-wm.binding.down i3-wm.binding.down j
-bindsym $mod+$i3-wm.binding.left focus left
-bindsym $mod+$i3-wm.binding.down focus down
-bindsym $mod+$i3-wm.binding.up focus up
-bindsym $mod+$i3-wm.binding.right focus right
-
 ## Navigate // Workspaces 1-10 // <> 0..9 ##
 bindsym $mod+$ws1_key workspace number $ws1
 bindsym $mod+$ws2_key workspace number $ws2
@@ -313,7 +303,7 @@ set_from_resource $i3-wm.program.shutdown i3-wm.program.shutdown /usr/bin/gnome-
 bindsym $mod+$i3-wm.binding.shutdown exec $i3-wm.program.shutdown
 
 ## Session // Lock Screen // <> Escape ##
-set_from_resource $i3-wm.binding.lock i3-wm.binding.lock Escape
+set_from_resource $i3-wm.binding.lock i3-wm.binding.lock Shift+l
 set_from_resource $i3-wm.program.lock i3-wm.program.lock dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 bindsym $mod+$i3-wm.binding.lock exec $i3-wm.program.lock
 
@@ -599,8 +589,6 @@ assign [class="Google-chrome"] $ws1
 assign [class="Gnome-terminal"] $ws2
 assign [class="jetbrains-*"] $ws3
 assign [class="Code"] $ws3
-assign [class="(?!Emote)"] $ws4
 
 for_window [class=".*"] focus
 for_window [class="Gnome-calculator"] floating enable
-
