@@ -44,11 +44,16 @@ export UPDATE_ZSH_DAYS=14
 #   export EDITOR='mvim'
 # fi
 
+whatsonport() {
+    netstat -ltnp | grep -w ":$1"
+}
+
 alias zshconfig="vim ~/.zshrc"
 alias zshapply="source ~/.zshrc"
 alias py="python3"
 alias copy="xclip -sel clip"
 alias gms="gm --squash"
+alias getip="ifconfig wlo1 | grep -oP --color=never '(?<=inet\s)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'"
 
 export GPG_TTY=$(tty)
 
