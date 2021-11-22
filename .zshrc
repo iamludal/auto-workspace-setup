@@ -4,6 +4,7 @@ export ZSH="/home/ludal/.oh-my-zsh"
 ZSH_THEME="awesomepanda"
 
 plugins=(
+    asdf
     colored-man-pages
     composer
     docker
