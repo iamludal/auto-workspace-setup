@@ -8,7 +8,7 @@ create_symlinks()
 
   for file in $hidden_files
   do
-    ln -sf $dir/$file ~/$file
+    ln -sf $dotfiles_dir/$file ~/$file
     
     if [[ $? -eq 0 ]]
     then
