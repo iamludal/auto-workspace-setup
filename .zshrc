@@ -54,6 +54,7 @@ alias gms="gm --squash"
 alias getip="ifconfig wlo1 | grep -oP --color=never '(?<=inet\s)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'"
 
 export GPG_TTY=$(tty)
+export PYTHONDONTWRITEBYTECODE=1
 
 PATH=/home/ludal/.yarn/bin:$PATH
 
