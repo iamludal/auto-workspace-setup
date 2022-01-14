@@ -46,12 +46,18 @@ whatsonport() {
     netstat -ltnp | grep -w ":$1"
 }
 
-alias zshconfig="vim ~/.zshrc"
-alias zshapply="source ~/.zshrc"
-alias py="python3"
+grb-safe() {
+  git stash >> /dev/null
+  grb $@
+  git stash pop >> /dev/null
+}
+
 alias copy="xclip -sel clip"
-alias gms="gm --squash"
 alias getip="ifconfig wlo1 | grep -oP --color=never '(?<=inet\s)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'"
+alias gms="gm --squash"
+alias py="python3"
+alias zshapply="source ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 
 export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
