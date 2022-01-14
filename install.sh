@@ -2,8 +2,9 @@
 
 create_symlinks()
 {
-  dir=$(pwd)/$(dirname $0)
-  hidden_files=$(ls $dir -A -I symlinks.sh -I .git -I README.md -I $dir)
+  dotfiles_dir=$PWD/$(dirname $0)
+  current_script=${0##*/}
+  hidden_files=$(ls $dotfiles_dir -A --ignore={.git,README.md,$current_script})
 
   for file in $hidden_files
   do
