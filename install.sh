@@ -1,10 +1,17 @@
 #!/bin/bash
 
+dotfiles_dir=$PWD/$(dirname $0)
+excluded=(.git README.md install.sh)
+
 create_symlinks()
 {
-  dotfiles_dir=$PWD/$(dirname $0)
-  current_script=${0##*/}
-  hidden_files=$(ls $dotfiles_dir -A --ignore={.git,README.md,$current_script})
+  find_cmd="find . -maxdepth 1"
+
+  for file in ${EXCLUDED[@]}; do
+    find_cmd="$find_cmd -not -name $file"
+  done
+
+  hidden_files=$(eval $find_cmd)
 
   for file in $hidden_files
   do
