@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ludal/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -27,8 +27,6 @@ plugins=(
 PROMPT_EOL_MARK=''
 
 source $ZSH/oh-my-zsh.sh
-
-RPROMPT="%{$FG[245]%} %? ↵ [%*]%{$reset_color%}"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
