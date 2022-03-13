@@ -12,7 +12,7 @@ Open up a new terminal at the project's root and run:
 - GNOME Shell: [Colloid Dark Nord](https://www.gnome-look.org/p/1661959/)
 - Icons: [Colloid](https://www.gnome-look.org/p/1661983/)
 - Ulauncher: [Ulancher-Nord](https://github.com/KiranWells/ulauncher-nord/)
-- Vim: [Dracula](https://draculatheme.com/vim)
+- Vim: [Material](https://github.com/kaicataldo/material.vim)
 
 
 ## ⚙️ Extensions

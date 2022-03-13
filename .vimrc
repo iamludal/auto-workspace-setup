@@ -1,6 +1,6 @@
-packadd! dracula
+packadd! material
 syntax enable
-colorscheme dracula
+colorscheme material
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
