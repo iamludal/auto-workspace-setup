@@ -8,10 +8,11 @@ Open up a new terminal at the project's root and run:
 
 ## 🎨 Themes
 
+- Chrome: [Nord](https://chrome.google.com/webstore/detail/nord/abehfkkfjlplnjadfcjiflnejblfmmpj)
 - GNOME Shell: [Colloid Dark Nord](https://www.gnome-look.org/p/1661959/)
 - Icons: [Colloid](https://www.gnome-look.org/p/1661983/)
-- Chrome: [Nord](https://chrome.google.com/webstore/detail/nord/abehfkkfjlplnjadfcjiflnejblfmmpj)
 - Ulauncher: [Ulancher-Nord](https://github.com/KiranWells/ulauncher-nord/)
+- Vim: [Dracula](https://draculatheme.com/vim)
 
 
 ## ⚙️ Extensions
