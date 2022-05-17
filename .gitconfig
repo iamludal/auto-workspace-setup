@@ -12,6 +12,7 @@
 	rebase = true
 [core]
 	editor = vim
+	autocrlf = input
 [commit]
 	gpgsign = true
 [tag]
