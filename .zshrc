@@ -10,6 +10,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent lifetime 10m
+zstyle :omz:plugins:ssh-agent quiet yes
+
 plugins=(
     asdf
     colored-man-pages
@@ -18,10 +22,11 @@ plugins=(
     docker-compose
     git
     npm
+    ssh-agent
     sudo
     yarn
-    zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 PROMPT_EOL_MARK=''
@@ -60,9 +65,8 @@ alias zshconfig="vim ~/.zshrc"
 export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
 
-PATH=/home/ludal/.yarn/bin:$PATH
-
 . ~/.asdf/plugins/java/set-java-home.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
