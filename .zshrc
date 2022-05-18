@@ -21,6 +21,7 @@ plugins=(
     docker
     docker-compose
     git
+    kubectl
     npm
     ssh-agent
     sudo
