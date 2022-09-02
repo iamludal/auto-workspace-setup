@@ -1,0 +1,21 @@
+- name: Environment setup
+  hosts: all
+  tasks:
+    - name: Install packages (apt)
+      apt:
+        pkg: [git, zsh]
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: Install packages (brew)
+      community.general.homebrew:
+        name: git,zsh
+        state: present
+        update_homebrew: yes
+      when: ansible_facts['os_family'] == 'Darwin'
+
+    - name: Create symlinks
+      ansible.builtin.file:
+        src: "{{ item }}"
+        dest: "{{ lookup('env', 'HOME') }}/{{ item | split('/') | last }}"
+        state: link
+      loop: "{{ lookup('fileglob', './dotfiles/.*', wantlist=True) }}"
