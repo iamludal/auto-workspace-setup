@@ -1,21 +1,36 @@
 - name: Environment setup
   hosts: all
+  vars:
+    is_debian: "{{ ansible_os_family == 'Debian' }}"
+    is_macos: "{{ ansible_os_family == 'Darwin' }}"
   tasks:
     - name: Install packages (apt)
+      become: true
       apt:
         pkg: [git, zsh]
-      when: ansible_facts['os_family'] == 'Debian'
+      when: is_debian
+
+    - name: Instal packages (snap)
+      become: true
+      snap:
+        name: [code, flameshot]
+      when: is_debian
 
     - name: Install packages (brew)
       community.general.homebrew:
         name: git,zsh
-        state: present
         update_homebrew: yes
-      when: ansible_facts['os_family'] == 'Darwin'
+      when: is_macos
+
+    - name: Install packages (brew cask)
+      community.general.homebrew_cask:
+        name: flameshot,visual-studio-code
+      when: is_macos
 
     - name: Create symlinks
       ansible.builtin.file:
-        src: "{{ item }}"
-        dest: "{{ lookup('env', 'HOME') }}/{{ item | split('/') | last }}"
+        src: "{{ item.src }}"
+        dest: "{{ lookup('env', 'HOME') }}/{{ item.path }}"
         state: link
-      loop: "{{ lookup('fileglob', './dotfiles/.*', wantlist=True) }}"
+      with_community.general.filetree: dotfiles/
+      when: item.state == 'file'
