@@ -1,12 +1,17 @@
-# Automated environment setup 👨🏻‍💻
+# Automated Environment Setup 👨🏻‍💻
 
 ## 📜 Requirements
 
-- [Ansible](https://www.ansible.com)
+- [Python >= 3](https://www.python.org/downloads/)
+
+## ⚙️ Installing Ansible
+
+```bash
+pip3 install ansible
+export PATH=~/.local/bin:$PATH
+```
 
 ## ℹ️ Usage
-
-Open up a new terminal at the project's root and run:
 
 ```bash
 ansible-playbook -i inventory playbook.yml
