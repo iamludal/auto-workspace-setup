@@ -4,6 +4,9 @@
 - name: Install Oh My Zsh
   import_playbook: playbooks/oh-my-zsh.yml
 
+- name: Configure vim
+  import_playbook: playbooks/vim.yml
+
 - name: Create symlinks
   import_playbook: playbooks/symlinks.yml
 

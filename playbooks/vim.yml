@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create themes folder
+      file:
+        path: ~/.vim/pack/themes/start
+        state: directory
+
+    - name: Clone theme repo
+      git:
+        repo: https://github.com/dracula/vim.git
+        dest: ~/.vim/pack/themes/start/dracula
+        depth: 1
