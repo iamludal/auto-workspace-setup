@@ -8,7 +8,7 @@
     - name: Install packages (apt)
       become: true
       apt:
-        pkg: [git, zsh, snapd, curl]
+        pkg: [git, zsh, snapd, curl, vim, gh]
       when: is_debian
 
     - name: Instal packages (snap)
@@ -19,7 +19,7 @@
 
     - name: Install packages (brew)
       community.general.homebrew:
-        name: git,zsh,colima,curl
+        name: git,zsh,colima,curl,vim,gh
         update_homebrew: yes
       when: is_macos
 
