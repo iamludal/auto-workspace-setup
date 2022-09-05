@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  vars_prompt:
+    - name: passphrase
+      private: true
+      prompt: GitHub SSH key passphrase
+  tasks:
+    - name: Generate GitHub SSH key
+      community.crypto.openssh_keypair:
+        path: "~/.ssh/github"
+        passphrase: "{{ passphrase }}"

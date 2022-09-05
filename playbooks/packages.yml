@@ -1,0 +1,28 @@
+- hosts: localhost
+  connection: local
+  vars:
+    installer: /tmp/ohmyzsh-install.sh
+    is_debian: "{{ ansible_os_family == 'Debian' }}"
+    is_macos: "{{ ansible_os_family == 'Darwin' }}"
+  tasks:
+    - name: Install packages (apt)
+      become: true
+      apt:
+        pkg: [git, zsh, snapd, curl]
+      when: is_debian
+
+    - name: Instal packages (snap)
+      become: true
+      snap:
+        name: [code, flameshot]
+      when: is_debian
+
+    - name: Install packages (brew)
+      community.general.homebrew:
+        name: git,zsh,colima,curl
+        update_homebrew: yes
+      when: is_macos
+
+    - name: Install packages (brew cask)
+      community.general.homebrew_cask:
+        name: flameshot,visual-studio-code,docker,google-chrome

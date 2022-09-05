@@ -1,0 +1,24 @@
+- hosts: localhost
+  connection: local
+  vars:
+    installer: /tmp/ohmyzsh-install.sh
+  tasks:
+    - name: Check if .oh-my-zsh folder exists
+      stat: path="~/.oh-my-zsh"
+      register: ohmyzsh
+
+    - name: Download installer
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: "{{ installer }}"
+      when: not ohmyzsh.stat.exists
+
+    - name: Install Oh My Zsh
+      shell: "{{ installer }}"
+      when: not ohmyzsh.stat.exists
+
+    - name: Remove installer
+      file:
+        path: "{{ installer }}"
+        state: absent
+      when: not ohmyzsh.stat.exists

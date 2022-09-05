@@ -2,7 +2,8 @@
 
 ## 📜 Requirements
 
-- [Python >= 3](https://www.python.org/downloads/)
+- [Python](https://www.python.org/downloads/)
+- [Homebrew](https://brew.sh/) (macOS only)
 
 ## ⚙️ Installing Ansible
 
@@ -14,5 +15,9 @@ export PATH=~/.local/bin:$PATH
 ## ℹ️ Usage
 
 ```bash
-ansible-playbook -i inventory playbook.yml
+ansible-playbook playbook.yml
 ```
+
+## ✅ Post-setup
+
+- [Add SSH key to GitHub](https://github.com/settings/keys)
