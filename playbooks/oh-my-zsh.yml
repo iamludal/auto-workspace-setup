@@ -7,18 +7,20 @@
       stat: path="~/.oh-my-zsh"
       register: ohmyzsh
 
-    - name: Download installer
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: "{{ installer }}"
-      when: not ohmyzsh.stat.exists
+    - when: not ohmyzsh.stat.exists
+      block:
+        - name: Download installer
+          get_url:
+            url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+            dest: "{{ installer }}"
+          when: not ohmyzsh.stat.exists
 
-    - name: Install Oh My Zsh
-      shell: "{{ installer }}"
-      when: not ohmyzsh.stat.exists
+        - name: Install Oh My Zsh
+          shell: "{{ installer }}"
+          when: not ohmyzsh.stat.exists
 
-    - name: Remove installer
-      file:
-        path: "{{ installer }}"
-        state: absent
-      when: not ohmyzsh.stat.exists
+        - name: Remove installer
+          file:
+            path: "{{ installer }}"
+            state: absent
+          when: not ohmyzsh.stat.exists
