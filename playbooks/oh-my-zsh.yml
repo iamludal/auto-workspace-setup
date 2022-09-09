@@ -1,7 +1,13 @@
 - hosts: localhost
   connection: local
   vars:
+    is_macos: "{{ ansible_os_family == 'Darwin' }}"
     installer: /tmp/ohmyzsh-install.sh
+    p10k_fonts:
+      - MesloLGS NF Regular.ttf
+      - MesloLGS NF Bold.ttf
+      - MesloLGS NF Italic.ttf
+      - MesloLGS NF Bold Italic.ttf
   tasks:
     - name: Check if .oh-my-zsh folder exists
       stat: path="~/.oh-my-zsh"
@@ -24,3 +30,27 @@
             path: "{{ installer }}"
             state: absent
           when: not ohmyzsh.stat.exists
+
+        - name: Add auto suggestions plugin
+          git:
+            repo: https://github.com/zsh-users/zsh-autosuggestions.git
+            dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+            depth: 1
+
+        - name: Add syntax highlighting plugin
+          git:
+            repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+            dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+            depth: 1
+
+        - name: Install fonts for powerlevel10k
+          get_url:
+            url: "https://github.com/romkatv/powerlevel10k-media/raw/master/{{ item }}"
+            dest: "{{ '~/Library/Fonts/' if is_macos else '~/.local/share/fonts/' }}/{{ item | replace('%20', ' ') }}"
+          loop: "{{ p10k_fonts | map('regex_replace', ' ', '%20') }}"
+
+        - name: Add powerlevel10k theme
+          git:
+            repo: https://github.com/romkatv/powerlevel10k.git
+            dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+            depth: 1
