@@ -21,3 +21,4 @@ ansible-playbook playbook.yml
 ## ✅ Post-setup
 
 - [Add SSH key to GitHub](https://github.com/settings/keys)
+- [Create GPG key](https://www.redhat.com/sysadmin/creating-gpg-keypairs)
