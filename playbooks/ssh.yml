@@ -7,6 +7,9 @@
     - name: github_key_passphrase
       private: true
       prompt: GitHub SSH key passphrase
+    - name: gitlab_key_passphrase
+      private: true
+      prompt: GitLab SSH key passphrase
   tasks:
     - name: Generate global SSH key
       community.crypto.openssh_keypair:
@@ -17,3 +20,8 @@
       community.crypto.openssh_keypair:
         path: "~/.ssh/github"
         passphrase: "{{ github_key_passphrase }}"
+
+    - name: Generate GitLab SSH key
+      community.crypto.openssh_keypair:
+        path: "~/.ssh/gitlab"
+        passphrase: "{{ gitlab_key_passphrase }}"
