@@ -1,9 +1,9 @@
 - hosts: localhost
   connection: local
   vars:
-    installer: /tmp/ohmyzsh-install.sh
     is_debian: "{{ ansible_os_family == 'Debian' }}"
     is_macos: "{{ ansible_os_family == 'Darwin' }}"
+    google_chrome_installer: /tmp/google-chrome-stable.deb
   tasks:
     - name: Install packages (apt)
       become: true
@@ -16,6 +16,24 @@
       snap:
         name: [code, flameshot]
       when: is_debian
+
+    - name: Install Google Chrome (debian)
+      when: is_debian
+      block:
+        - name: Download Google Chrome
+          get_url:
+            url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dest: "{{ google_chrome_installer }}"
+
+        - name: Install Google Chrome
+          become: true
+          apt:
+            deb: "{{ google_chrome_installer }}"
+
+        - name: Remove installer
+          file:
+            path: "{{ google_chrome_installer }}"
+            state: absent
 
     - name: Install packages (brew)
       community.general.homebrew:
