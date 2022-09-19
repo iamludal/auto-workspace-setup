@@ -1,4 +1,4 @@
-# Automated Environment Setup 👨🏻‍💻
+# Automated Workspace Setup 👨🏻‍💻
 
 ## 📜 Requirements
 
