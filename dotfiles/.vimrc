@@ -13,3 +13,5 @@ set hlsearch
 set encoding=utf-8
 set mouse=a
 set noswapfile
+set backspace=indent,eol,start
+
