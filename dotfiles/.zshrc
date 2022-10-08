@@ -25,6 +25,7 @@ plugins=(
     npm
     ssh-agent
     sudo
+    terraform
     yarn
     zsh-autosuggestions
     zsh-syntax-highlighting
