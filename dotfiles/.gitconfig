@@ -19,3 +19,7 @@
 	gpgsign = true
 [init]
 	defaultBranch = main
+[help]
+	autoCorrect = immediate
+[push]
+	autoSetupRemote = true
