@@ -23,3 +23,5 @@
 	autoCorrect = immediate
 [push]
 	autoSetupRemote = true
+[rebase]
+	updateRefs = true
