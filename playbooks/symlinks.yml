@@ -14,5 +14,5 @@
         dest: "~/{{ item.path }}"
         state: link
         force: true
-      with_community.general.filetree: dotfiles/
+      with_community.general.filetree: ../dotfiles/
       when: item.state == 'file'
