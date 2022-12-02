@@ -3,6 +3,7 @@
   vars:
     is_macos: "{{ ansible_os_family == 'Darwin' }}"
     installer: /tmp/ohmyzsh-install.sh
+    user: "{{ lookup('env', 'USER') }}"
     p10k_fonts:
       - MesloLGS NF Regular.ttf
       - MesloLGS NF Bold.ttf
@@ -16,9 +17,12 @@
     - when: not ohmyzsh.stat.exists
       block:
         - name: Download installer
+          become: true
           get_url:
             url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
             dest: "{{ installer }}"
+            mode: 0755 # chmod +x
+            owner: "{{ user }}"
           when: not ohmyzsh.stat.exists
 
         - name: Install Oh My Zsh
@@ -26,6 +30,7 @@
           when: not ohmyzsh.stat.exists
 
         - name: Remove installer
+          become: true
           file:
             path: "{{ installer }}"
             state: absent
@@ -43,10 +48,16 @@
             dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
             depth: 1
 
+        - name: Create fonts directory
+          file:
+            path: "{{ '~/Library/Fonts' if is_macos else '~/.local/share/fonts' }}"
+            state: directory
+          register: fonts_directory
+
         - name: Install fonts for powerlevel10k
           get_url:
             url: "https://github.com/romkatv/powerlevel10k-media/raw/master/{{ item }}"
-            dest: "{{ '~/Library/Fonts/' if is_macos else '~/.local/share/fonts/' }}/{{ item | replace('%20', ' ') }}"
+            dest: "{{ fonts_directory.path }}/{{ item | replace('%20', ' ') }}"
           loop: "{{ p10k_fonts | map('regex_replace', ' ', '%20') }}"
 
         - name: Add powerlevel10k theme
