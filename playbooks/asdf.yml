@@ -17,11 +17,14 @@
 
     - when: not asdf.stat.exists
       block:
-        - name: Install asdf
+        - name: Download asdf
           git:
             repo: https://github.com/asdf-vm/asdf.git
             dest: ~/.asdf
             depth: 1
+
+        - name: Source asdf
+          command: . ~/.asdf/asdf.sh
 
         - name: Install plugins
           command: asdf plugin add {{ item.name }}
