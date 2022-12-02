@@ -15,6 +15,7 @@
       become: true
       snap:
         name: [code, flameshot]
+        classic: true
       when: is_debian
 
     - name: Install Google Chrome (debian)
@@ -36,11 +37,12 @@
             state: absent
 
     - name: Install packages (brew)
+      when: is_macos
       community.general.homebrew:
         name: git,zsh,colima,curl,vim,gh,docker,exa
         update_homebrew: yes
-      when: is_macos
 
     - name: Install packages (brew cask)
+      when: is_macos
       community.general.homebrew_cask:
         name: flameshot,visual-studio-code,docker,google-chrome,font-fira-code
