@@ -1,0 +1,38 @@
+packages:
+  apt:
+    - git
+    - zsh
+    - snapd
+    - curl
+    - vim
+    - gh
+    - docker.io
+    - fonts-firacode
+    - exa
+    - flameshot
+
+  snap:
+    strict:
+      - flameshot
+    classic:
+      - code
+
+  brew:
+    formula:
+      - git
+      - zsh
+      - colima
+      - curl
+      - vim
+      - gh
+      - docker
+      - exa
+      - bat
+    cask:
+      - flameshot
+      - visual-studio-code
+      - docker
+      - google-chrome
+      - font-fira-code
+      - alt-tab
+      - raycast

@@ -5,44 +5,56 @@
     is_macos: "{{ ansible_os_family == 'Darwin' }}"
     google_chrome_installer: /tmp/google-chrome-stable.deb
   tasks:
-    - name: Install packages (apt)
-      become: true
-      apt:
-        pkg: [git, zsh, snapd, curl, vim, gh, docker.io, fonts-firacode, exa]
-      when: is_debian
+    - name: Read variables from file
+      include_vars:
+        file: "{{ playbook_dir }}/../variables.yaml"
+        name: variables
 
-    - name: Instal packages (snap)
-      become: true
-      snap:
-        name: [code, flameshot]
-        classic: true
-      when: is_debian
-
-    - name: Install Google Chrome (debian)
+    - name: Install Debian packages
       when: is_debian
       block:
-        - name: Download Google Chrome
-          get_url:
-            url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            dest: "{{ google_chrome_installer }}"
-
-        - name: Install Google Chrome
+        - name: Install packages (apt)
           become: true
           apt:
-            deb: "{{ google_chrome_installer }}"
+            name: "{{ variables.packages.apt }}"
+            update_cache: yes
 
-        - name: Remove installer
-          file:
-            path: "{{ google_chrome_installer }}"
-            state: absent
+        - name: Install packages (snap strict)
+          become: true
+          snap:
+            name: "{{ variables.packages.snap.strict }}"
 
-    - name: Install packages (brew)
+        - name: Install packages (snap classic)
+          become: true
+          snap:
+            name: "{{ variables.packages.snap.classic }}"
+            classic: yes
+
+        - name: Install Google Chrome (debian)
+          block:
+            - name: Download Google Chrome
+              get_url:
+                url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                dest: "{{ google_chrome_installer }}"
+
+            - name: Install Google Chrome
+              become: true
+              apt:
+                deb: "{{ google_chrome_installer }}"
+
+            - name: Remove installer
+              file:
+                path: "{{ google_chrome_installer }}"
+                state: absent
+
+    - name: Install macOS packages
       when: is_macos
-      community.general.homebrew:
-        name: git,zsh,colima,curl,vim,gh,docker,exa
-        update_homebrew: yes
+      block:
+        - name: Install packages (brew)
+          community.general.homebrew:
+            name: "{{ variables.packages.brew.formula }}"
+            update_homebrew: yes
 
-    - name: Install packages (brew cask)
-      when: is_macos
-      community.general.homebrew_cask:
-        name: flameshot,visual-studio-code,docker,google-chrome,font-fira-code
+        - name: Install packages (brew cask)
+          community.general.homebrew_cask:
+            name: "{{ variables.packages.brew.cask }}"
