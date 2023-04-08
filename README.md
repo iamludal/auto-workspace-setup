@@ -15,7 +15,7 @@ export PATH=~/.local/bin:$PATH
 ## ℹ️ Usage
 
 ```bash
-ansible-playbook playbook.yml
+ansible-playbook playbook.yaml
 ```
 
 ## ✅ Post-setup
