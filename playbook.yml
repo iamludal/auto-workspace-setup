@@ -4,14 +4,14 @@
 - name: Install Oh My Zsh
   import_playbook: playbooks/oh-my-zsh.yml
 
-- name: Install asdf
-  import_playbook: playbooks/asdf.yml
-
 - name: Configure vim
   import_playbook: playbooks/vim.yml
 
 - name: Create symlinks
   import_playbook: playbooks/symlinks.yml
+
+- name: Install asdf
+  import_playbook: playbooks/asdf.yml
 
 - name: Create SSH keys
   import_playbook: playbooks/ssh.yml

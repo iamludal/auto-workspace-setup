@@ -1,37 +1,37 @@
 - hosts: localhost
   connection: local
-  vars:
-    plugins:
-      - name: java
-        versions: [corretto-11.0.15.9.1, openjdk-17.0.2]
-      - name: maven
-        versions: [3.8.4]
-      - name: nodejs
-        versions: [14.19.2, 16.14.2, 17.5.0]
-      - name: yarn
-        versions: [1.22.18]
   tasks:
     - name: Check if .asdf folder exists
       stat: path="~/.asdf"
       register: asdf
 
     - when: not asdf.stat.exists
-      block:
-        - name: Download asdf
-          git:
-            repo: https://github.com/asdf-vm/asdf.git
-            dest: ~/.asdf
-            depth: 1
+      name: Download asdf
+      git:
+        repo: https://github.com/asdf-vm/asdf.git
+        dest: ~/.asdf
+        depth: 1
 
-        - name: Source asdf
-          command: . ~/.asdf/asdf.sh
+    - name: Add execute permission to source script
+      file:
+        path: ~/.asdf/asdf.sh
+        mode: 0755
+      register: asdf_source
 
-        - name: Install plugins
-          command: asdf plugin add {{ item.name }}
-          with_items: "{{ plugins }}"
+    - name: Get plugins to install
+      shell: cat ~/.tool-versions | grep -v '^#' | awk '{print $1}'
+      register: asdf_plugins
 
-        - name: Install plugins versions
-          command: asdf install {{ item.0.name }} {{ item.1  }}
-          with_subelements:
-            - "{{ plugins }}"
-            - versions
+    - name: List installed plugins
+      command: asdf plugin list
+      register: asdf_installed_plugins
+
+    - name: Add plugins that are not installed
+      command: asdf plugin add {{ item }}
+      when: item not in asdf_installed_plugins.stdout
+      with_items: "{{ asdf_plugins.stdout_lines }}"
+
+    - name: Install plugins versions
+      command: asdf install
+      args:
+        chdir: ~
