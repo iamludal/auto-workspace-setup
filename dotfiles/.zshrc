@@ -67,6 +67,8 @@ alias ls="exa --icons"
 
 export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
+export SUDO_PROMPT="Magic word please? "
+export KUBECONFIG=$HOME/.kube/config
 
 . ~/.asdf/plugins/java/set-java-home.zsh
 
