@@ -58,3 +58,7 @@
         - name: Install packages (brew cask)
           community.general.homebrew_cask:
             name: "{{ variables.packages.brew.cask }}"
+
+    - name: Install pip packages
+      pip:
+        name: "{{ variables.packages.pip }}"

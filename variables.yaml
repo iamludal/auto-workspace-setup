@@ -36,3 +36,6 @@ packages:
       - font-fira-code
       - alt-tab
       - raycast
+
+  pip:
+    - thefuck
