@@ -5,9 +5,9 @@
 	ada = add -A
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [user]
-	email = ludovic.chombeau@gmail.com
+	email = contact@iamludal.fr
 	name = Ludal
-	signingkey = ludovic.chombeau@gmail.com
+	signingkey = contact@iamludal.fr
 [pull]
 	rebase = true
 [core]
