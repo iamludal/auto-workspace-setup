@@ -21,6 +21,7 @@ plugins=(
     docker
     docker-compose
     git
+    golang
     kubectl
     npm
     ssh-agent
@@ -69,6 +70,7 @@ export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
+export PATH=$PATH:$(go env GOPATH)
 
 . ~/.asdf/plugins/java/set-java-home.zsh
 
