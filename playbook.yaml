@@ -10,8 +10,8 @@
 - name: Create symlinks
   import_playbook: playbooks/symlinks.yaml
 
-- name: Install asdf
-  import_playbook: playbooks/asdf.yaml
-
 - name: Create SSH keys
   import_playbook: playbooks/ssh.yaml
+
+- name: Install asdf
+  import_playbook: playbooks/asdf.yaml
