@@ -22,3 +22,10 @@ ansible-playbook playbook.yaml
 
 - [Add SSH key to GitHub](https://github.com/settings/keys)
 - [Create GPG key](https://www.redhat.com/sysadmin/creating-gpg-keypairs)
+
+## 🍎 MacOS
+
+```bash
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.4; killall Dock
+```
