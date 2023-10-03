@@ -27,6 +27,7 @@ packages:
       - gh
       - exa
       - bat
+      - kubectl
     cask:
       - flameshot
       - visual-studio-code
