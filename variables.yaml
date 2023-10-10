@@ -28,14 +28,17 @@ packages:
       - exa
       - bat
       - kubectl
+      - stats
+      - helm
     cask:
       - flameshot
       - visual-studio-code
-      - docker
       - google-chrome
       - font-fira-code
       - alt-tab
       - raycast
+      - docker
 
   pip:
     - thefuck
+    - pre-commit
