@@ -50,6 +50,10 @@
     - name: Install macOS packages
       when: is_macos
       block:
+        - name: Install taps
+          community.general.homebrew_tap:
+            name: "{{ variables.packages.brew.taps }}"
+
         - name: Install packages (brew)
           community.general.homebrew:
             name: "{{ variables.packages.brew.formula }}"

@@ -18,6 +18,8 @@ packages:
       - code
 
   brew:
+    taps:
+      - homebrew/cask-fonts
     formula:
       - git
       - zsh
