@@ -16,6 +16,7 @@ zstyle :omz:plugins:ssh-agent quiet yes
 
 plugins=(
     asdf
+    bun
     colored-man-pages
     composer
     docker
