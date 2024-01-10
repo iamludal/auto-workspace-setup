@@ -49,10 +49,6 @@ export UPDATE_ZSH_DAYS=14
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-whatsonport() {
-    netstat -ltnp | grep -w ":$1"
-}
-
 grb-safe() {
   git stash >> /dev/null
   grb $@
@@ -71,22 +67,18 @@ export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
-export PATH=$PATH:$(go env GOPATH)
+export PATH=$PATH:$(go env GOPATH):$HOME/.bun/bin
 
-. ~/.asdf/plugins/java/set-java-home.zsh
+source_scripts=(
+  ~/.p10k.zsh
+  ~/.zsh/aliases
+  ~/.asdf/plugins/java/set-java-home.zsh
+  ~/google-cloud-sdk/path.zsh.inc
+  ~/google-cloud-sdk/completion.zsh.inc
+)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
-  . "$HOME/google-cloud-sdk/path.zsh.inc";
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
-  . "$HOME/google-cloud-sdk/completion.zsh.inc";
-fi
+for script in $source_scripts; do
+  [[ -f "$script" ]] && . $script
+done
 
 eval $(thefuck --alias)
