@@ -25,6 +25,7 @@ plugins=(
     golang
     kubectl
     npm
+    poetry
     ssh-agent
     sudo
     terraform
@@ -67,7 +68,7 @@ export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
-export PATH=$PATH:$(go env GOPATH):$HOME/.bun/bin
+export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH):$HOME/.bun/bin
 
 source_scripts=(
   ~/.p10k.zsh
@@ -80,5 +81,7 @@ source_scripts=(
 for script in $source_scripts; do
   [[ -f "$script" ]] && . $script
 done
+
+. $(pack completion --shell zsh)
 
 eval $(thefuck --alias)
