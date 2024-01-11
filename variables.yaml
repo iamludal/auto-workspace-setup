@@ -21,6 +21,7 @@ packages:
     taps:
       - homebrew/cask-fonts
     formula:
+      - jq
       - git
       - zsh
       - colima
