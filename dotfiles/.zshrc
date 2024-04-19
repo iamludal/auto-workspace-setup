@@ -1,3 +1,5 @@
+export GPG_TTY=$(tty)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -64,7 +66,6 @@ alias zshapply="source ~/.zshrc"
 alias zshconfig="vim ~/.zshrc"
 alias ls="eza --icons"
 
-export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
