@@ -8,7 +8,7 @@ packages:
     - gh
     - docker.io
     - fonts-firacode
-    - exa
+    - eza
     - flameshot
 
   snap:

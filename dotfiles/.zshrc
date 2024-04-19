@@ -62,7 +62,7 @@ alias gms="gm --squash"
 alias py="python3"
 alias zshapply="source ~/.zshrc"
 alias zshconfig="vim ~/.zshrc"
-alias ls="exa --icons"
+alias ls="eza --icons"
 
 export GPG_TTY=$(tty)
 export PYTHONDONTWRITEBYTECODE=1
