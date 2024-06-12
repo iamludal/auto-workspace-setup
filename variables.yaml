@@ -24,7 +24,6 @@ packages:
       - jq
       - git
       - zsh
-      - colima
       - curl
       - vim
       - gh
