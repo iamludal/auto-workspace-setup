@@ -68,7 +68,7 @@ alias ls="eza --icons"
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
-export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH):$HOME/.bun/bin
+export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin:$HOME/.bun/bin
 
 source_scripts=(
   ~/.p10k.zsh
@@ -84,7 +84,8 @@ done
 
 . $(pack completion --shell zsh)
 
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
+eval "$(direnv hook zsh)"
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
