@@ -68,7 +68,7 @@ alias ls="eza --icons"
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
-export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin:$HOME/.bun/bin
+export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin:$HOME/.bun/bin:$HOME/Library/Android/sdk/emulator
 
 source_scripts=(
   ~/.p10k.zsh
