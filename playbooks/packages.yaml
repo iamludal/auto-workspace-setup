@@ -1,54 +1,12 @@
 - hosts: localhost
   connection: local
-  vars:
-    is_debian: "{{ ansible_os_family == 'Debian' }}"
-    is_macos: "{{ ansible_os_family == 'Darwin' }}"
-    google_chrome_installer: /tmp/google-chrome-stable.deb
   tasks:
     - name: Read variables from file
       include_vars:
         file: "{{ playbook_dir }}/../variables.yaml"
         name: variables
 
-    - name: Install Debian packages
-      when: is_debian
-      block:
-        - name: Install packages (apt)
-          become: true
-          apt:
-            name: "{{ variables.packages.apt }}"
-            update_cache: yes
-
-        - name: Install packages (snap strict)
-          become: true
-          snap:
-            name: "{{ variables.packages.snap.strict }}"
-
-        - name: Install packages (snap classic)
-          become: true
-          snap:
-            name: "{{ variables.packages.snap.classic }}"
-            classic: yes
-
-        - name: Install Google Chrome (debian)
-          block:
-            - name: Download Google Chrome
-              get_url:
-                url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-                dest: "{{ google_chrome_installer }}"
-
-            - name: Install Google Chrome
-              become: true
-              apt:
-                deb: "{{ google_chrome_installer }}"
-
-            - name: Remove installer
-              file:
-                path: "{{ google_chrome_installer }}"
-                state: absent
-
     - name: Install macOS packages
-      when: is_macos
       block:
         - name: Install taps
           community.general.homebrew_tap:

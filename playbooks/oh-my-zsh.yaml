@@ -1,7 +1,6 @@
 - hosts: localhost
   connection: local
   vars:
-    is_macos: "{{ ansible_os_family == 'Darwin' }}"
     installer: /tmp/ohmyzsh-install.sh
     user: "{{ lookup('env', 'USER') }}"
     p10k_fonts:
@@ -50,7 +49,7 @@
 
         - name: Create fonts directory
           file:
-            path: "{{ '~/Library/Fonts' if is_macos else '~/.local/share/fonts' }}"
+            path: '~/Library/Fonts'
             state: directory
           register: fonts_directory
 

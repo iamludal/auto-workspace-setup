@@ -1,13 +1,6 @@
 - hosts: localhost
   connection: local
   tasks:
-    - name: Create folders
-      file:
-        path: "{{ item }}"
-        state: directory
-      loop:
-        - "~/.config/flameshot"
-
     - name: Create symlinks
       ansible.builtin.file:
         src: "{{ item.src }}"

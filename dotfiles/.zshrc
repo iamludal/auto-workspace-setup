@@ -1,5 +1,3 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -17,7 +15,6 @@ zstyle :omz:plugins:ssh-agent lifetime 10m
 zstyle :omz:plugins:ssh-agent quiet yes
 
 plugins=(
-    asdf
     bun
     colored-man-pages
     composer
@@ -27,6 +24,7 @@ plugins=(
     git
     golang
     kubectl
+    mise
     npm
     poetry
     ssh-agent
@@ -63,17 +61,18 @@ alias gms="gm --squash"
 alias py="python3"
 alias zshapply="source ~/.zshrc"
 alias zshconfig="vim ~/.zshrc"
-alias ls="eza --icons"
 
 export PYTHONDONTWRITEBYTECODE=1
 export SUDO_PROMPT="Magic word please? "
 export KUBECONFIG=$HOME/.kube/config
-export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin:$HOME/.bun/bin:$HOME/Library/Android/sdk/emulator
+
+export PYTHON_BIN_PATH=$(dirname $(mise which python))
+export PATH=$PATH:$PYTHON_BIN_PATH:$HOME/.local/bin:$HOME/.bun/bin:$HOME/Library/Android/sdk/emulator:$HOME/Library/Android/sdk/build-tools/35.0.1
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 source_scripts=(
   ~/.p10k.zsh
   ~/.zsh/aliases
-  ~/.asdf/plugins/java/set-java-home.zsh
   ~/google-cloud-sdk/path.zsh.inc
   ~/google-cloud-sdk/completion.zsh.inc
 )
@@ -82,10 +81,9 @@ for script in $source_scripts; do
   [[ -f "$script" ]] && . $script
 done
 
-. $(pack completion --shell zsh)
-
 eval "$(thefuck --alias)"
 eval "$(direnv hook zsh)"
+eval "$(mise activate zsh)"
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+# Added by Antigravity
+export PATH="/Users/ludal/.antigravity/antigravity/bin:$PATH"

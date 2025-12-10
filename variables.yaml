@@ -1,46 +1,26 @@
 packages:
-  apt:
-    - git
-    - zsh
-    - snapd
-    - curl
-    - vim
-    - gh
-    - docker.io
-    - fonts-firacode
-    - eza
-    - flameshot
-
-  snap:
-    strict:
-      - flameshot
-    classic:
-      - code
-
   brew:
     taps:
       - homebrew/cask-fonts
     formula:
-      - jq
-      - git
-      - zsh
-      - curl
-      - vim
-      - gh
-      - exa
       - bat
+      - curl
+      - gh
+      - git
+      - helm
+      - jq
       - kubectl
       - stats
-      - helm
+      - thefuck
+      - vim
+      - zsh
     cask:
-      - flameshot
-      - visual-studio-code
-      - google-chrome
-      - font-fira-code
       - alt-tab
-      - raycast
       - docker
+      - font-fira-code
+      - google-chrome
+      - raycast
+      - visual-studio-code
 
   pip:
-    - thefuck
     - pre-commit
